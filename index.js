@@ -14,7 +14,7 @@ app.use(cors({
 
 app.use(
   session({
-    secret: "change_this_later",
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     cookie: {
@@ -26,7 +26,7 @@ app.use(
 );
 
 // TEMPORARY — we will replace this with a real hash later
-const PASSWORD_HASH = "$2b$10$ZNDXuTpkwB/YoBA2fOuLsOzW8lKZv3kS6wyQNkdwgv35VKQhyb.X2";
+const PASSWORD_HASH = process.env.PASSWORD_HASH;
 
 app.post("/login", async (req, res) => {
   const { password } = req.body;
